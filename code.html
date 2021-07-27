@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>APP NAME: Coding Project By Usama Mobeen</title>
+    <title>TACO CAT: Coding Project By Usama Mobeen</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,7 +23,7 @@
 <!--==== Nav Section ====-->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><i class="fas fa-laptop-code me-1" style="color: #FFBD4A;"></i>MY APP</a>
+        <a class="navbar-brand" href="/index.html"><i class="fas fa-laptop-code me-1" style="color: #FFBD4A;"></i>TACO CAT</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -40,10 +40,10 @@
                     <a class="nav-link active" aria-current="page" href="/code.html">The Code</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="blank" href="#">GitHub</a>
+                    <a class="nav-link" target="_blank" href="https://github.com/UsamaMobeen/TacoCat">GitHub</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="blank" href="#">About</a>
+                    <a class="nav-link" target="_blank" href="https://me-usama.netlify.app">About</a>
                 </li>
             </ul>
         </div>
@@ -52,21 +52,71 @@
 <!--==== Main Section ====-->
     <main class="flex-shrink-0">
      <div class="container g-5 py-5 px-5 mt-5">
-        <h2 class="border-1 border-bottom border-dark">The Code For My App</h2>
+        <h2 class="border-1 border-bottom border-dark">The Code For Taco Cat</h2>
         <div class="row row-col-1 row-cols-lg-2">
             <div class="col-lg-8">
                 <pre class="line-numbers"><code class="language-javascript">
-                        //Call Hello  World
-                        function HelloWorld() {
-                             alert("Hello World");
+                    //get user input 
+                    function getValue(){
+                    
+                        // make sure the alert is invisible
+                        document.getElementById("alert").classList.add("invisible");
+                        //get user string from the page
+                        let userString = document.getElementById("userString").value;
+                        //check for palindrome
+                        let palindromeString = checkForPalindrome(userString);
+                        //display out message to the screen
+                    
+                        displayMessage(palindromeString);
+                    }
+                    
+                    //check for palindrome
+                    function checkForPalindrome(userString){
+                        
+                      userString = userString.toLowerCase();
+                        let regex = /[^a-z0-9]/gi;
+                        userString = userString.replace(regex,"");
+                    
+                        let revString = [];
+                        let returnObj = {};
+                    
+                        for (let index = userString.length - 1; index >=0;index--)
+                        {
+                            revString+=userString[index];
                         }
+                    
+                        if(revString == userString){
+                            returnObj.msg = "Well done! You entered a palindrome!";
+                        }else{
+                            returnObj.msg = "Sorry! You did not enter a palindrome!";
+                    
+                        }
+                        returnObj.reversed = revString;
+                        return returnObj;
+                    }
+                    
+                    //display a message to the user.
+                    function displayMessage(palindromeString){
+                            
+                        document.getElementById("alertHeader").innerHTML = palindromeString.msg;
+                        document.getElementById("msg").innerHTML = `Your reversed phrase: ${palindromeString.reversed}.`;
+                    
+                        document.getElementById("alert").classList.remove("invisible");
+                    
+                    }
                     </code>
                 </pre>
             </div>
             <div class="col-lg-4">
-                <p>The Code is structed in one function.</p>
-                <h5>Hello World</h5>
-                <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                <h5 class="pb-2 border-bottom border-2">getValue()</h5>
+                <p>The getValue() function is responsible for retrieving the string the user provides in our input field. Then we will call the checkForPalindrome() and displayMessage() functions described below.</p>
+                <br>
+                <h5 class="pb-2 border-bottom border-2">checkForPalindrome()</h5>
+                <p>The checkForPalindrome() function takes one parameters that used to be checked for palindrome. The function uses a regullar expression checker to check the string for removing space and special characters in a word or phrase then with for loop to iterate through the string the user provided and then start the loop in reserve order by using array property "length" <strong>arr.length - 1</strong> until the index is greater or equal to zero. For every iteration we add the character into another array. Further more match the reversed string with actual string for palindrome with if condition then add that reversed string and a message to dynamic object. Then that object is returned.</p>
+                <br>
+                <h5 class="pb-2 border-bottom border-2">displayMessage()</h5>
+                <p>The displayMessage() function takes one parameter which is of Object. The function retrieves the paragraph we made in HTML using the id and then sets the innerHTML with the object msg and with reversed string. After this remove the exsisting class inside alert box using <strong>"classList.remove"</strong> method to display the results. </p>
+                <br>
             </div>
         </div>
      </div>
